@@ -7,7 +7,11 @@ export interface TorOptions {
   torCommand?: string
   tmpDir? :string
 }
-
+function sleep(ms: number): Promise<void>{
+  return new Promise((resolve) => {
+    setTimeout(resolve,ms)
+  })
+}
 export class Tor{
   hostname: string
   torCommand: string
@@ -39,6 +43,7 @@ export class Tor{
       
     })
     torProcess.spawn()
+    await sleep(10)
   }
   /**
    * Fetch from tor network(get method)
