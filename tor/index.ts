@@ -5,7 +5,8 @@ export interface TorOptions {
 export class Tor{
   hostname: string
   torCommand: string
-  constructor(options: TorOptions){
+  constructor(options?: TorOptions){
+    options = options ? options :  {}
     this.hostname = options.hostname ? options.hostname : "127.0.0.1:9050"
     if(options.torCommand){
       this.torCommand = options.torCommand
