@@ -113,7 +113,11 @@ export class Tor{
     const curl = new Deno.Command("curl",{
       args: cmd
     })
-    const { stdout } = curl.output()
+    const { code, stdout, stderr } = curl.output()
     console.log(new TextDecoder().decode(stdout))
+    if(code!==0){
+      throw new Error(new TextDecoder().decode(stderr))
+
+    }
   }
 }
