@@ -109,6 +109,11 @@ export class Tor{
       path: tmpPath,
       tmpDir: this.tmpDir,
     })
-    console.log(cmd)
+    
+    const curl = new Deno.Command("curl",{
+      args: cmd
+    })
+    const { stdout } = curl.output()
+    console.log(new TextDecoder().decode(stdout))
   }
 }
