@@ -32,7 +32,8 @@ export class Tor{
         "https://google.com"
       ]
     })
-    const res = new Response(curl)
+    const output = await curl.output()
+    const res = new Response(output)
     return res
   }
 }
