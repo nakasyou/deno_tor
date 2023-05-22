@@ -1,4 +1,5 @@
 import { path } from "../deps.ts"
+import parseHeader from "./parseHeader.ts"
 
 export interface TorOptions {
   hostname?: string
@@ -48,7 +49,9 @@ export class Tor{
     const output = await curl.output()
     const { code, stdout } = output
     const data = await Deno.readFile(tmpPath)
-    console.log(new TextDecoder().decode(stdout))
+    
+    parseHeader(new TextDecoder().decode(stdout))
+
     const res = new Response(data.buffer)
     return res
   }
