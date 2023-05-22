@@ -7,4 +7,5 @@ const res = await tor.fetch("http://google.com", {
   body: "Hello!"
 })
 console.log(res)
+console.log(res.text())
 //console.log(await res.text())
