@@ -12,6 +12,6 @@ export default (raw: string) => {
     return [headerSplit[0],headerSplit.slice(1).join(": ")]
   })
 
-  console.log()
+  console.log(headers)
   
 }
