@@ -1,5 +1,6 @@
 import { path } from "../deps.ts"
 import parseHeader from "./parseHeader.ts"
+import request2curl from "./request2curl.ts"
 
 export interface TorOptions {
   hostname?: string
@@ -102,22 +103,12 @@ export class Tor{
     await Deno.mkdir(this.tmpDir, { recursive: true }) // Create tmp dir
     const tmpPath = path.join(this.tmpDir,"./"+crypto.randomUUID())
 
-    const cmd = [
-      "-x",
-      `socks5h://${this.hostname}`,
-      "-sS",
-      "-L",
-      "-D",
-      "-",
-
-      // Method
-      "-X",
-      request.method,
-      // Download path
-      "-o",
-      tmpPath,
-      // URL
-      request.url,
-    ]
+    const cmd = await request2curl({
+      request: request,
+      proxy: `socks5h://${this.hostname}`,
+      path: tmpPath,
+      tmpDir: this.tmpDir,
+    })
+    console.log(cmd)
   }
 }
