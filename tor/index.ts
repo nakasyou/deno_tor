@@ -50,9 +50,13 @@ export class Tor{
     const { code, stdout } = output
     const data = await Deno.readFile(tmpPath)
     
-    parseHeader(new TextDecoder().decode(stdout))
+    const headers = parseHeader(new TextDecoder().decode(stdout))
 
-    const res = new Response(data.buffer)
+    const res = new Response(data.buffer, {
+      headers: headers.headers,
+      status: headers.status,
+    })
+
     return res
   }
 }
