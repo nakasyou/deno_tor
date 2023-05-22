@@ -32,7 +32,7 @@ export class Tor{
     torProcess.spawn()
   }
   async get(url: string): Response{
-    const tmpPath = path.join(this.tmpDir,"./"+crypto.randomUUID()),
+    const tmpPath = path.join(this.tmpDir,"./"+crypto.randomUUID())
     const curl = new Deno.Command("curl", {
       args: [
         "-s",
