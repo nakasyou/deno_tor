@@ -27,12 +27,23 @@ export class Tor{
     }
 
   }
+  /**
+   * Start tor proxy
+   * @remarks
+   * Start tor proxy. It function return promise.
+   * @returns Return is void.
+   */
   async start(){
     const torProcess = new Deno.Command(this.torCommand, {
       
     })
     torProcess.spawn()
   }
+  /**
+   * Fetch from tor network(get method)
+   * @param url Fetch url.
+   * @returns 
+   */
   async get(url: string): Response{
     await Deno.mkdir(this.tmpDir, { recursive: true }) // Create tmp dir
     const tmpPath = path.join(this.tmpDir,"./"+crypto.randomUUID())
@@ -65,6 +76,12 @@ export class Tor{
 
     return res
   }
+  /**
+   * fetch from tor network.
+   * @param input - This defines the resource that you wish to fetch.
+   * @param init - An object containing any custom settings that you want to apply to the request.
+   * @alpha
+   */
   async fetch(input: URL | string | Request, init: RequestInit): Response{
     console.warn("Fetch api is alpha.")
 
