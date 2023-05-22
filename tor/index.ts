@@ -114,9 +114,16 @@ export class Tor{
       args: cmd
     })
     const { code, stdout, stderr } = await curl.output()
-    console.log(new TextDecoder().decode(stdout))
     if(code!==0){
       throw new Error(new TextDecoder().decode(stderr))
     }
+    const data = await Deno.readFile(tmpPath)
+    // Parse header
+    const headers = parseHeader(new TextDecoder().decode(stdout))
+    
+    return new Response(data.buffer, {
+      headers: headers.headers,
+      status: headers.status,
+    })
   }
 }
