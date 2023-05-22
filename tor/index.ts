@@ -95,7 +95,7 @@ export class Tor{
       if(input instanceof URL){
         url = input
       }else{
-        url = new url(input)
+        url = new URL(input)
       }
       request = new Request(url.toString(),init)
     }
