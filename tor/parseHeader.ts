@@ -3,7 +3,7 @@ export default (raw: string) => {
   
   const datas = raw.split("\n\n")
 
-  const headerData: Array<string> = (datas.at(-1) === "" ? datas.at(-2) : datas.at(-1)).split("\n")
+  const headerData = (datas.at(-1) === "" ? datas.at(-2) : datas.at(-1)).split("\n") as Array<string>
 
   const statusCode = parseInt(headerData[0].split(" ")[1])  // Get status code
   
