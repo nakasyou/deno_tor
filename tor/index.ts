@@ -36,7 +36,7 @@ export class Tor{
     const stdout = output.stdout
     console.log("stdout",stdout)
     
-    const res = new Response(output.buffer)
+    const res = new Response(stdout.buffer)
     return res
   }
 }
