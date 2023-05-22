@@ -38,7 +38,7 @@ export class Tor{
     const curl = new Deno.Command("curl", {
       args: [
         "-x",
-        this.hostname,
+        `socks5h://${this.hostname}`,
         "-sS",
         "-L",
         "-D",
