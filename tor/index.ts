@@ -36,7 +36,7 @@ export class Tor{
     const tmpPath = path.join(this.tmpDir,"./"+crypto.randomUUID())
     const curl = new Deno.Command("curl", {
       args: [
-        "-s",
+        "-sS",
         "-L",
         "-D",
         "-",
@@ -46,7 +46,7 @@ export class Tor{
       ]
     })
     const output = await curl.output()
-    const stdout = output.stdout
+    const stdout = output.stderr
     console.log(output.code)
     //const data = await Deno.readFile(tmpPath)
 
