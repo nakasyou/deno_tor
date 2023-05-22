@@ -33,6 +33,8 @@ export class Tor{
       ]
     })
     const output = await curl.output()
+    const stdout = output.stdout
+    
     const res = new Response(output)
     return res
   }
