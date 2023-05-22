@@ -22,7 +22,7 @@ export default async function request2curl(data: Request2curlOptions){
   }
   if(data.request.body){
     const bodyTmpPath = path.join(data.tmpDir,"./"+crypto.randomUUID())
-    const bodyUint8Array = new Uint8Array(await new Response(readableStream).arrayBuffer())
+    const bodyUint8Array = new Uint8Array(await new Response(data.request.body).arrayBuffer())
     await Deno.writeFile(bodyTmpPath,bodyUint8Array)
     result.push("--data-binary")
     result.push("@"+bodyTmpPath)
