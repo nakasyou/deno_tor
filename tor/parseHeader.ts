@@ -3,8 +3,8 @@ export default (raw: string) => {
   
   const datas = raw.split("\n\n")
 
-  const headerData = (datas.at(-1) === "" ? datas.at(-2) : datas.at(-1)).split("\n") as Array<string>
-
+  const headerAData = (datas.at(-1) === "" ? datas.at(-2) : datas.at(-1))
+  const headerData = (headerAData? headerAData : "").split("\n")
   const statusCode = parseInt(headerData[0].split(" ")[1])  // Get status code
   
   const headers = Object.fromEntries(headerData.slice(1).map(header=>{
