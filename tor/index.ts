@@ -6,6 +6,7 @@ export interface TorOptions {
   torCommand?: string
   tmpDir? :string
 }
+
 export class Tor{
   hostname: string
   torCommand: string
@@ -63,5 +64,43 @@ export class Tor{
     })
 
     return res
+  }
+  async fetch(input: URL | string | Request, init: RequestInit): Response{
+    console.warn("Fetch api is alpha.")
+
+    // create request object
+    let request: Request
+    if(input instanceof Request){
+      request = input
+    }else{
+      let url: URL
+      if(input instanceof URL){
+        url = input
+      }else{
+        url = new url(input)
+      }
+      request = new Request(url.toString(),init)
+    }
+
+    await Deno.mkdir(this.tmpDir, { recursive: true }) // Create tmp dir
+    const tmpPath = path.join(this.tmpDir,"./"+crypto.randomUUID())
+
+    const cmd = [
+      "-x",
+      `socks5h://${this.hostname}`,
+      "-sS",
+      "-L",
+      "-D",
+      "-",
+
+      // Method
+      "-X",
+      request.method,
+      // Download path
+      "-o",
+      tmpPath,
+      // URL
+      request.url,
+    ]
   }
 }
