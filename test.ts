@@ -2,7 +2,7 @@ import { Tor } from "./mod.ts"
 
 const tor = new Tor()
 
-const res = await tor.fetch("http://google.com", {
+const res = await tor.fetch("https://www.bbcweb3hytmzhn5d532owbu6oqadra5z3ar726vq5kgwwn6aucdccrad.onion", {
   method: "post",
   body: "Hello!"
 })
