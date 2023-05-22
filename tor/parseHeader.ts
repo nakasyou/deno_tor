@@ -8,8 +8,8 @@ export default (raw: string) => {
   const statusCode = parseInt(headerData[0].split(" ")[1])  // Get status code
   
   const headers = Object.fromEntries(headerData.slice(1).map(header=>{
-    const headerSplit = header.split(": ")
-    return [headerSplit[0],headerSplit.slice(1).join(": ")]
+    const headerSplit = header.split(":")
+    return [headerSplit[0],headerSplit.slice(1).join(":")]
   }))
 
   return {
