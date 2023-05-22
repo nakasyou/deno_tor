@@ -37,6 +37,8 @@ export class Tor{
     const tmpPath = path.join(this.tmpDir,"./"+crypto.randomUUID())
     const curl = new Deno.Command("curl", {
       args: [
+        "-x",
+        this.hostname,
         "-sS",
         "-L",
         "-D",
