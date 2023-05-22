@@ -1,5 +1,6 @@
 export default (raw: string) => {
-  raw = raw.replaceAll("\r")  // delete \r
+  raw = raw.replaceAll("\r","")  // delete \r
   
-  console.log(JSON.stringify(raw.split("\n\n"),null,2))
+  console.log(raw.split("\n\n").length)
+  console.log(raw.split("\n\n"))
 }
