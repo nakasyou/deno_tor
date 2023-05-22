@@ -48,7 +48,7 @@ export class Tor{
     const output = await curl.output()
     const { code, stdout } = output
     const data = await Deno.readFile(tmpPath)
-    
+    console.log(new TextDecoder().decode(stdout))
     const res = new Response(data.buffer)
     return res
   }
