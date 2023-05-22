@@ -81,7 +81,6 @@ export class Tor{
    * fetch from tor network.
    * @param input - This defines the resource that you wish to fetch.
    * @param init - An object containing any custom settings that you want to apply to the request.
-   * @alpha
    */
   async fetch(input: URL | string | Request, init: RequestInit): Response{
     console.warn("Fetch api is alpha.")
