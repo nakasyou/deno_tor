@@ -29,12 +29,12 @@ export class Tor{
   async get(url: string): Response{
     const curl = new Deno.Command("curl", {
       args: [
-        "https://google.com"
+        "-i",
+        "https://google.com",
       ]
     })
     const output = await curl.output()
     const stdout = output.stdout
-    console.log("stdout",stdout)
     
     const res = new Response(stdout.buffer)
     return res
