@@ -1,3 +1,5 @@
 export default (raw: string) => {
-  console.log(raw.split("\n"))
+  raw = raw.replaceAll("\r")  // delete \r
+  
+  console.log(raw.split("\n\n"))
 }
