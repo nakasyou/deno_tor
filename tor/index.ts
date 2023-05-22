@@ -50,7 +50,7 @@ export class Tor{
    * @param url Fetch url.
    * @returns 
    */
-  async get(url: string): Response{
+  async get(url: string): Promise<Response>{
     await Deno.mkdir(this.tmpDir, { recursive: true }) // Create tmp dir
     const tmpPath = path.join(this.tmpDir,"./"+crypto.randomUUID())
     const curl = new Deno.Command("curl", {
@@ -77,7 +77,7 @@ export class Tor{
 
     const res = new Response(data.buffer, {
       headers: headers.headers,
-      status: headers.status,
+      status: headers.statusCode,
     })
 
     return res
@@ -87,7 +87,7 @@ export class Tor{
    * @param input - This defines the resource that you wish to fetch.
    * @param init - An object containing any custom settings that you want to apply to the request.
    */
-  async fetch(input: URL | string | Request, init: RequestInit): Response{
+  async fetch(input: URL | string | Request, init: RequestInit): Promise<Response>{
     console.warn("Fetch api is alpha.")
 
     // create request object
@@ -127,7 +127,7 @@ export class Tor{
     
     return new Response(data.buffer, {
       headers: headers.headers,
-      status: headers.status,
+      status: headers.statusCode,
     })
   }
 }
