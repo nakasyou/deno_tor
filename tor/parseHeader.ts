@@ -1,6 +1,8 @@
 export default (raw: string) => {
   raw = raw.replaceAll("\r","")  // delete \r
   
-  console.log(raw.split("\n\n").length)
-  console.log(raw.split("\n\n"))
+  const datas = raw.split("\n\n").length
+
+  const headerData = datas.at(-1) === "" ? datas.at(-2) : datas.at(-1)
+  conslle.log(headerData)
 }
