@@ -87,7 +87,7 @@ export class Tor{
    * @param input - This defines the resource that you wish to fetch.
    * @param init - An object containing any custom settings that you want to apply to the request.
    */
-  async fetch(input: URL | string | Request, init: RequestInit): Promise<Response>{
+  async fetch(input: URL | string | Request, init?: RequestInit): Promise<Response>{
     // create request object
     let request: Request
     if(input instanceof Request){
