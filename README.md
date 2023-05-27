@@ -16,6 +16,8 @@ const res: Response = await tor.fetch("https://www.bbcweb3hytmzhn5d532owbu6oqadr
   // and other fetch options..
 }) // BBC Website on darkweb
 ```
+> **Warning**
+> The `tor.fetch` API is not parfect as [fetch api](https://developer.mozilla.org/en-US/docs/Web/API/fetch).
 ### GET API (Deprecated)
 ```ts
 const res: Response = await tor.get("https://www.bbcweb3hytmzhn5d532owbu6oqadra5z3ar726vq5kgwwn6aucdccrad.onion") // BBC Website on darkweb
